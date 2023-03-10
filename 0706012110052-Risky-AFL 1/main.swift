@@ -103,6 +103,7 @@ func mainScreen(){
                     print("")
                     print("Shopping Cart")
                     var result = [String: [String: Double]]()
+//                    nama toko dan item
                     for (shopName, menuName, _, quantity) in cartArray {
                         result[shopName, default: [:]][menuName, default: 0] += quantity
                     }
@@ -139,15 +140,18 @@ func mainScreen(){
                                 print("")
                                 print("Enjoy your meals!")
                                 print("")
-                                print("Press [return] to go back to main screen")
-                                userInput = readLine()!
-                                if userInput.lowercased() == "return"{
-                                    cartArray.removeAll()
-                                    print("terimakasih")
-                                    mainScreen()
-                                }else{
-                                    print("Tidak Valid")
-                                }
+                                repeat{
+                                    print("Press [return] to go back to main screen")
+                                    userInput = readLine()!
+                                    switch userInput.lowercased() {
+                                    case ""  :
+                                        cartArray.removeAll()
+                                        print("terimakasih")
+                                        mainScreen()
+                                    default:
+                                        print("salah")
+                                    }
+                                }while userInput.lowercased() != ""
                             } else if userInput == "0" {
                                 print("Payment can't be zero.")
                             } else {
