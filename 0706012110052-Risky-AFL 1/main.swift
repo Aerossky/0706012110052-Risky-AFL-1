@@ -130,7 +130,6 @@ func mainScreen(){
                         repeat{
                             print("Enter the amount of your money:",terminator: "")
                             userInput = readLine()!
-                            
                             if let value = Int(userInput), value > 0 && value >= totalPrice {
                                 print("")
                                 print("Your total order : \(totalPrice.formatted(.currency(code: "IDR")))")
@@ -151,6 +150,8 @@ func mainScreen(){
                                     }
                                 }while userInput.lowercased().trimmingCharacters(in: .whitespaces) != ""
                             } else if userInput == "0" {
+                                print("")
+                                print("Your total order : \(totalPrice)")
                                 print("Payment can't be zero.")
                             } else {
                                 print("")
@@ -233,5 +234,3 @@ func buyMenu(shopName: String, menuName:String, price:Double, quantity:Double){
     let order: Cart = (shopName, menuName, price, quantity)
     cartArray.append(order)
 }
-
-
