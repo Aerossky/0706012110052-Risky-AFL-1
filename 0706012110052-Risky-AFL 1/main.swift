@@ -123,7 +123,7 @@ func mainScreen(){
                         var totalPrice = 0
                         //cara kali
                         for i in 0..<cartArray.count{
-                            totalPrice += Int(cartArray[i].2 * cartArray[i].3)
+                            totalPrice += Int(cartArray[i].cquantity * cartArray[i].cprice)
                         }
                         print("")
                         print("Your total order: \(totalPrice.formatted(.currency(code: "IDR")))")
