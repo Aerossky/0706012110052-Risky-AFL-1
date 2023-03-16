@@ -19,39 +19,38 @@ var tuku = [
     "Nasi Kuning": 20000,
     "Nasi Campur": 25000,
     "Tahu Isi": 5000,
-    "Air Mineral": 3000,
-    "Risol": 5000
+    "Risol Ayam": 5000,
+    "Air Mineral": 3000
 ]
 var gotri = [
     "Nasi Bakar": 21000,
     "Nasi Ayam": 25000,
-    "Nasgor Ayam": 15000,
-    "Mie Rebus": 14000,
+    "Mie Goreng Ayam": 15000,
+    "Mie Rebus Ayam": 14000,
     "Es Degan Gotri": 10000
-   
 ]
 var madam = [
     "Ayam Geprek":35000,
     "Ayam Hijau":35000,
-    "Ayam Merah":31000,
+    "Ayam Merah":35000,
     "Ayam Hitam":25000,
-    "Ayam Jeder Madam":30000
-    
+    "Ayam Jeder":30000
 ]
 var kopte = [
-    "Soda Gembira Kopte":18000,
-    "Kopi Hitam": 5000,
-    "Es Teh": 5000,
-    "Jus Mangga":10000,
-    "Jus Nanas":15000
+    "Americano":18000,
+    "Cappucino": 25000,
+    "Happy Soda": 20000,
+    "Manggo Yakult":10000,
+    "Croissant":25000
 ]
 var ngikan = [
     "Ngikan Matah": 25000,
     "Ngikan Geprek": 26000,
     "Ngikan Limau": 20000,
     "Ngikan Bakar": 22000,
-    "Ngikan Special":35000
+    "Ngikan Uduk":35000
     ]
+
 //sorted array tupple
 let sortedTuku = tuku.sorted(by:{ $0.value < $1.value })
 let sortedGotri = gotri.sorted (by:{ $0.value < $1.value })
@@ -78,9 +77,9 @@ func mainScreen(){
         [S]hopping Cart
         [Q]uit
         Your cafetaria choise?
-        """)
+        """ ,terminator: "")
         userInput = readLine()!
-        switch userInput.lowercased() {
+        switch userInput.lowercased().trimmingCharacters(in: .whitespaces) {
         case "1"  :
         buyScreen(storeSorted: sortedTuku, storeName: "Tuku - Tuku")
         case "2" :
@@ -92,7 +91,6 @@ func mainScreen(){
         case "5" :
             buyScreen(storeSorted: sortedNgikan, storeName: "Ngikan")
         case "s":
-            print("masuk")
             repeat{
                 if cartArray.count == 0
                 {
@@ -103,7 +101,7 @@ func mainScreen(){
                     print("")
                     print("Shopping Cart")
                     var result = [String: [String: Double]]()
-//                    nama toko dan item
+//                    loop untuk nama item sesuai toko
                     for (shopName, menuName, _, quantity) in cartArray {
                         result[shopName, default: [:]][menuName, default: 0] += quantity
                     }
@@ -116,9 +114,9 @@ func mainScreen(){
                     print("")
                     print("Press [B] to go back")
                     print("Press [P] to pay / checkout")
-                    print("Your choice?")
+                    print("Your choice?" ,terminator: "")
                     userInput = readLine()!
-                    switch userInput.lowercased() {
+                    switch userInput.lowercased().trimmingCharacters(in: .whitespaces) {
                     case "b":
                         print("Back")
                     case "p":
@@ -127,14 +125,14 @@ func mainScreen(){
                         for i in 0..<cartArray.count{
                             totalPrice += Int(cartArray[i].2 * cartArray[i].3)
                         }
-                        print("Your total order: \(totalPrice.formatted(.currency(code: "IDR")))")
-                        print("Enter the amount of your money:")
-                        print("Please enter your payment.")
                         print("")
+                        print("Your total order: \(totalPrice.formatted(.currency(code: "IDR")))")
                         repeat{
-                            print("Enter the amount of your money:")
+                            print("Enter the amount of your money:",terminator: "")
                             userInput = readLine()!
+                            
                             if let value = Int(userInput), value > 0 && value >= totalPrice {
+                                print("")
                                 print("Your total order : \(totalPrice.formatted(.currency(code: "IDR")))")
                                 print("You pay: \(value.formatted(.currency(code: "IDR"))) Change: \((value - totalPrice).formatted(.currency(code: "IDR")))")
                                 print("")
@@ -143,39 +141,41 @@ func mainScreen(){
                                 repeat{
                                     print("Press [return] to go back to main screen")
                                     userInput = readLine()!
-                                    switch userInput.lowercased() {
+                                    switch userInput.lowercased().trimmingCharacters(in: .whitespaces) {
                                     case ""  :
                                         cartArray.removeAll()
-                                        print("terimakasih")
+                                        print("Thankyou")
                                         mainScreen()
                                     default:
-                                        print("salah")
+                                        print("Invalid input. Please try again.")
                                     }
-                                }while userInput.lowercased() != ""
+                                }while userInput.lowercased().trimmingCharacters(in: .whitespaces) != ""
                             } else if userInput == "0" {
                                 print("Payment can't be zero.")
                             } else {
+                                print("")
                                 print("Your total order : \(totalPrice)")
-                                print("Please enter a valid amount")
+                                print("Please enter a valid amount",terminator: "")
+                                print("")
                             }
-                        }while userInput.lowercased() != "return"
+                        }while userInput.lowercased().trimmingCharacters(in: .whitespaces) != "return"
                     default:
-                        print("Input Salah")
+                        print("Invalid input. Please try again.")
                     }
-                    print(cartArray)
                 }
 
-            }while userInput.lowercased() != "b"
+            }while userInput.lowercased().trimmingCharacters(in: .whitespaces) != "b"
         case "q":
             print("quit")
             exit(0)
         default:
-            print("Maaf input anda salah\n")
+            print("Invalid input. Please try again.\n")
             
         }
-    }while userInput.lowercased() != "q"
+    }while userInput.lowercased().trimmingCharacters(in: .whitespaces) != "q"
 }
 
+//function untuk menampilkan menu makanan sesuai toko yang dipilih user
 func buyScreen(storeSorted: [(String, Int)], storeName: String){
     repeat{
        //memanggil function getMenu
@@ -187,19 +187,20 @@ func buyScreen(storeSorted: [(String, Int)], storeName: String){
             //buyMenu()
             
             print("\(storeSorted[inputNumber-1].0) @ \(storeSorted[inputNumber-1].1.formatted(.currency(code: "IDR")))")
-            print("How many \(storeSorted[inputNumber-1].0) do you want to buy?")
+            print("How many \(storeSorted[inputNumber-1].0) do you want to buy?",terminator: "")
             userInput = readLine()!
-            if let quantity = Int(userInput), quantity > 0{
+            if let quantity = Int(userInput.trimmingCharacters(in: .whitespaces)), quantity > 0{
                 buyMenu(shopName: storeName, menuName:storeSorted[inputNumber-1].0 , price: Double(storeSorted[inputNumber-1].1), quantity: Double(quantity))
                 print("Thank you for ordering.")
             }else{
-                print("Maaf input anda salah.")
+                print("Invalid input. Please try again.")
             }
+            
         }else{
-            print("Maaf input anda salah")
+            print("Invalid input. Please try again.")
         }
         
-    }while userInput.lowercased() != "b"
+    }while userInput.lowercased().trimmingCharacters(in: .whitespaces) != "b"
 }
 
 
@@ -219,7 +220,7 @@ What would you like to order?
     print("""
 [B]ack to Main Menu
 Your menu choice?
-""")
+""",terminator: "")
 }
 
 //getMenuLength: mengambil jumlah banyak menu pada toko tertentu, (arraymenu)
