@@ -5,6 +5,18 @@
 //  Created by MacBook Pro on 28/02/23.
 //
 
+/**
+ Dokumentasi
+ 1. Menggunakan dictionary tuple
+ 2. Dictionary di sorted dari harga yang murah ke mahal
+ 3.Function
+    Func buyScreen menampilkan menu makanan sesuai toko yang dipilih user.
+    Func getMenu menampilkan semua menu yang ada di sebuah toko sesuai nama toko, (arraymenu, namatoko)
+    Func addMenuToCart menambahkan barang ke array cart
+ 4.Key
+    Menghitung totalHarga
+ **/
+
 import Foundation
 
 //inisialisasi variable
@@ -121,7 +133,7 @@ func mainScreen(){
                         print("Back")
                     case "p":
                         var totalPrice = 0
-                        //cara kali
+                        //menghitung total harga
                         for i in 0..<cartArray.count{
                             totalPrice += Int(cartArray[i].cquantity * cartArray[i].cprice)
                         }
@@ -167,7 +179,7 @@ func mainScreen(){
 
             }while userInput.lowercased().trimmingCharacters(in: .whitespaces) != "b"
         case "q":
-            print("quit")
+            print("Thankyou")
             exit(0)
         default:
             print("Invalid input. Please try again.\n")
@@ -184,14 +196,12 @@ func buyScreen(storeSorted: [(String, Int)], storeName: String){
        //memanggil function storeMenu
         userInput = readLine()!
         //tidak kurang dari 0 dan tidak lebih dari banyak menu
-        if let inputNumber = Int(userInput), inputNumber > 0, inputNumber <=  getMenuLength(name: tuku) {
-            //buyMenu()
-            
+        if let inputNumber = Int(userInput), inputNumber > 0, inputNumber <=  storeSorted.count {
             print("\(storeSorted[inputNumber-1].0) @ \(storeSorted[inputNumber-1].1.formatted(.currency(code: "IDR")))")
             print("How many \(storeSorted[inputNumber-1].0) do you want to buy?",terminator: "")
             userInput = readLine()!
             if let quantity = Int(userInput.trimmingCharacters(in: .whitespaces)), quantity > 0{
-                buyMenu(shopName: storeName, menuName:storeSorted[inputNumber-1].0 , price: Double(storeSorted[inputNumber-1].1), quantity: Double(quantity))
+                addMenuToCart(shopName: storeName, menuName:storeSorted[inputNumber-1].0 , price: Double(storeSorted[inputNumber-1].1), quantity: Double(quantity))
                 print("Thank you for ordering.")
             }else{
                 print("Invalid input. Please try again.")
@@ -203,8 +213,6 @@ func buyScreen(storeSorted: [(String, Int)], storeName: String){
         
     }while userInput.lowercased().trimmingCharacters(in: .whitespaces) != "b"
 }
-
-
 
 //logic function
 //getMenu: menampilkan semua menu yang ada di sebuah toko sesuai nama toko, (arraymenu, namatoko)
@@ -224,13 +232,8 @@ Your menu choice?
 """,terminator: "")
 }
 
-//getMenuLength: mengambil jumlah banyak menu pada toko tertentu, (arraymenu)
-func getMenuLength(name: [String: Int])-> Int{
-    return name.count
-}
-
 //buyMenu: menambahkan barang ke array cart
-func buyMenu(shopName: String, menuName:String, price:Double, quantity:Double){
+func addMenuToCart(shopName: String, menuName:String, price:Double, quantity:Double){
     let order: Cart = (shopName, menuName, price, quantity)
     cartArray.append(order)
 }
