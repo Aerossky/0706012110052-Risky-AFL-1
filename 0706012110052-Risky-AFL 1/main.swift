@@ -76,7 +76,7 @@ mainScreen()
 
 func mainScreen(){
     repeat{
-        print("Welcome to UC-Walk Cafeetaria 👨🏻‍🍳👩🏻‍🍳\n")
+        print("Welcome to UC-Walk Cafetaria 👨🏻‍🍳👩🏻‍🍳\n")
         print("""
         Please choose cafetaria:
             
@@ -88,7 +88,7 @@ func mainScreen(){
         -
         [S]hopping Cart
         [Q]uit
-        Your cafetaria choise?
+        Your cafetaria choice?
         """ ,terminator: "")
         userInput = readLine()!
         switch userInput.lowercased().trimmingCharacters(in: .whitespaces) {
