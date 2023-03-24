@@ -14,7 +14,7 @@
     Func getMenu menampilkan semua menu yang ada di sebuah toko sesuai nama toko, (arraymenu, namatoko)
     Func addMenuToCart menambahkan barang ke array cart
  4.Key
-    Menghitung totalHarga
+    Menghitung totalharga
  **/
 
 import Foundation
