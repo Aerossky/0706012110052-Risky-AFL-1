@@ -17,15 +17,12 @@ var kopteShop = Shop(name: "Kopte", menu: [])
 var ngikanShop = Shop(name: "Ngikan", menu: [])
 let cart:Cart = Cart()
 
-//Add Shop with the menu
+//Add data shop with the menu
 addData()
 //Call view
 MainView()
 
 
-//print(arrayShop[0].name)
-//mainScreen()
-//dump(madamShop.printMenu())
 
 
 
