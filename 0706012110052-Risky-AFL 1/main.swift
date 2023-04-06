@@ -10,11 +10,12 @@ import Foundation
 
 
 //Declaration
-let tukuShop = Shop(name: "Tuku Tuku", menu:[])
-let gotriShop = Shop(name: "Gotri", menu: [])
-let madamShop = Shop(name: "Madam", menu: [])
-let kopteShop = Shop(name: "Kopte", menu: [])
-let ngikanShop = Shop(name: "Ngikan", menu: [])
+var tukuShop = Shop(name: "Tuku Tuku", menu:[])
+var gotriShop = Shop(name: "Gotri", menu: [])
+var madamShop = Shop(name: "Madam", menu: [])
+var kopteShop = Shop(name: "Kopte", menu: [])
+var ngikanShop = Shop(name: "Ngikan", menu: [])
+let cart:Cart = Cart()
 
 //Add Shop with the menu
 addData()

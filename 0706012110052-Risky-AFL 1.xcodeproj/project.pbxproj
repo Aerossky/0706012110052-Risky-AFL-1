@@ -17,6 +17,8 @@
 		048F9F3B29DB28C800828886 /* CartProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F9F3A29DB28C800828886 /* CartProtocol.swift */; };
 		048F9F3E29DC959900828886 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F9F3D29DC959900828886 /* DashboardView.swift */; };
 		048F9F4329DC9AAF00828886 /* ShopData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F9F4229DC9AAF00828886 /* ShopData.swift */; };
+		048F9F4729DD2C0C00828886 /* MenuProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F9F4629DD2C0C00828886 /* MenuProtocol.swift */; };
+		048F9F4929DD2C1B00828886 /* ItemProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F9F4829DD2C1B00828886 /* ItemProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -43,6 +45,8 @@
 		048F9F3A29DB28C800828886 /* CartProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartProtocol.swift; sourceTree = "<group>"; };
 		048F9F3D29DC959900828886 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		048F9F4229DC9AAF00828886 /* ShopData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopData.swift; sourceTree = "<group>"; };
+		048F9F4629DD2C0C00828886 /* MenuProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuProtocol.swift; sourceTree = "<group>"; };
+		048F9F4829DD2C1B00828886 /* ItemProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +94,8 @@
 			children = (
 				048F9F3829DB277300828886 /* ShopProtocol.swift */,
 				048F9F3A29DB28C800828886 /* CartProtocol.swift */,
+				048F9F4629DD2C0C00828886 /* MenuProtocol.swift */,
+				048F9F4829DD2C1B00828886 /* ItemProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -181,9 +187,11 @@
 			files = (
 				04270CDF29D5A862002F83F6 /* item.swift in Sources */,
 				048F9F3B29DB28C800828886 /* CartProtocol.swift in Sources */,
+				048F9F4929DD2C1B00828886 /* ItemProtocol.swift in Sources */,
 				04270CDD29D5A84E002F83F6 /* shop.swift in Sources */,
 				04270CDB29D5A7AB002F83F6 /* menu.swift in Sources */,
 				048F9F3E29DC959900828886 /* DashboardView.swift in Sources */,
+				048F9F4729DD2C0C00828886 /* MenuProtocol.swift in Sources */,
 				048F9F4329DC9AAF00828886 /* ShopData.swift in Sources */,
 				04270CE129D5A86F002F83F6 /* cart.swift in Sources */,
 				04270CE329D5B046002F83F6 /* procedural.swift in Sources */,

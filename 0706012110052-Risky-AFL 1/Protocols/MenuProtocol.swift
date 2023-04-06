@@ -6,3 +6,9 @@
 //
 
 import Foundation
+protocol MenuProtocol {
+    var name: String { get set }
+    var price: Int { get set }
+    var shopName: String { get set }
+
+}

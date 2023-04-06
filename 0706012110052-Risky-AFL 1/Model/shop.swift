@@ -6,7 +6,7 @@
 //
 
 import Foundation
-class Shop:ShopProtocol{
+struct Shop:ShopProtocol{
     var name:String
     var menu:[Menu]
     
@@ -15,14 +15,14 @@ class Shop:ShopProtocol{
         self.menu = menu
     }
     //    create
-    func addItemShop(item: [Menu]) {
+    mutating func addItemShop(item: [Menu]) {
         self.menu += item
     }
     
     //    read
     func printMenu() -> [Menu] {
         for (index,item) in self.menu.enumerated() {
-            print("\(index+1) \(item.name) - Rp. \(item.price)")
+            print("\(index+1) \(item.name) - \(item.price.formatted(.currency(code: "IDR")))")
         }
         return menu
     }

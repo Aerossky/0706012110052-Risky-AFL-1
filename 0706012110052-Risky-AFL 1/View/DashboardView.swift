@@ -26,17 +26,73 @@
             userInput = readLine()!
             switch userInput.lowercased().trimmingCharacters(in: .whitespaces) {
             case "1"  :
-                print(buyScreen(storeName:tukuShop))
+                buyScreen(storeName:tukuShop)
             case "2" :
-                print(buyScreen(storeName:gotriShop))
+                buyScreen(storeName:gotriShop)
             case "3" :
-                print(buyScreen(storeName:madamShop))
+                buyScreen(storeName:madamShop)
             case "4" :
-                print(buyScreen(storeName:kopteShop))
+                buyScreen(storeName:kopteShop)
             case "5" :
-                print(buyScreen(storeName:ngikanShop))
+                buyScreen(storeName:ngikanShop)
             case "s":
-                print(" masuk ke cart bos")
+                repeat{
+                    if  cart.getCartListFill() == true{
+                        print()
+                        print("Your cart is empty.")
+                        userInput = "b"
+                        print()
+                    }else{
+                        cart.getCartList()
+                        print("")
+                        print("Press [B] to go back")
+                        print("Press [P] to pay / checkout")
+                        print("Your choice?" ,terminator: "")
+                        userInput = readLine()!
+                        switch userInput.lowercased().trimmingCharacters(in: .whitespaces) {
+                        case "b":
+                            print("Back")
+                        case "p":
+                            let totalPrice = cart.getCartTotalPrice()
+                         
+                            repeat{
+                                print("Your total order: \(totalPrice.formatted(.currency(code: "IDR")))")
+                                print("Enter the amount of your money:",terminator: "")
+                                userInput = readLine()!
+                                if let value = Int(userInput.trimmingCharacters(in: .whitespaces)), value > 0 && value >= totalPrice {
+                                    print("You pay:\(value.formatted(.currency(code: "IDR"))) Change:\(cart.checkoutPaymentCart(money: Int(userInput) ?? 0).formatted(.currency(code: "IDR")))")
+                                    print("\n Enjoy your meals \n")
+                                    repeat{
+                                        print("Press [return] to go back to main screen")
+                                        userInput = readLine()!
+                                        switch userInput.lowercased().trimmingCharacters(in: .whitespaces) {
+                                        case ""  :
+                                            cart.carts.removeAll()
+                                            print("Thankyou")
+                                            MainView()
+                                        default:
+                                            print("Invalid input. Please try again.")
+                                        }
+                                    }while userInput.lowercased().trimmingCharacters(in: .whitespaces) != ""
+                                }else if userInput == "0" {
+                                    print("")
+                                    print("Your total order : \(totalPrice)")
+                                    print("Payment can't be zero.")
+                                } else {
+                                    print("")
+                                    print("Your total order : \(totalPrice)")
+                                    print("Please enter a valid amount",terminator: "")
+                                    print("")
+                               }
+                            }while userInput.lowercased().trimmingCharacters(in: .whitespaces) != "return"
+                        default:
+                            print()
+                            print("Invalid input. Please try again.")
+                            print()
+                        }
+                    }
+                    
+                }while userInput.lowercased().trimmingCharacters(in: .whitespaces) != "b"
             case "q":
                 print("Thankyou")
                 exit(0)
@@ -48,8 +104,8 @@
     }
     
     func buyScreen(storeName:Shop){
-        print()
         repeat{
+            print("")
             print("""
         Hi,welcome back to \(storeName.name)!
         What would you like to order?
@@ -62,35 +118,28 @@
         Your menu choice?
         """,terminator: "")
             userInput = readLine()!
-            if let inputNumber = Int(userInput), inputNumber > 0, inputNumber <=  storeName.menu.count{
+            if let inputNumber = Int(userInput.trimmingCharacters(in: .whitespaces)), inputNumber > 0, inputNumber <=  storeName.menu.count{
                 print()
                 let index = Int(inputNumber-1)
                 let foodName = storeName.menu[index].name
                 let foodPrice = storeName.menu[index].price
+                let foodShopName = storeName.menu[index].shopName
                 
-                print("\(foodName) @ \(foodPrice)")
+                print("\(foodName) @ \(foodPrice.formatted(.currency(code: "IDR")))")
                 print("How many \(foodName) do you want to buy?",terminator: "")
                 userInput = readLine()!
                 if let quantity = Int(userInput.trimmingCharacters(in: .whitespaces)), quantity > 0{
-                    //                    TES
-                    let item = Item(id:1,name: "Nasi Kuning", price: 20000, shopName: "Tuku Tuku", quantity: 1)
-                    let item1 = Item(id:1,name: "Nasi Kuning", price: 5000, shopName: "Tuku Tuku", quantity: 1)
-                    let item2 = Item(id:20,name: "Ngikan Matah", price: 25000, shopName: "Ngikan", quantity: 1)
-                    let cart = Cart()
-                    cart.addItem(item)
-                    cart.addItem(item1)
-                    cart.addItem(item2)
-                    print("TOTAL\(cart.getCartTotalPrice())")
-                    print(cart.getCartList())
-                    //                    PENUTUP TES
+                    cart.addItemCart(Item(name: foodName, price: foodPrice, shopName: foodShopName, quantity: quantity))
                     print("Thank you for ordering.")
+                    print()
                 }else{
                     print("Invalid input. Please try again.")
+                    print()
                 }
-                print()
+            }else if(userInput == "b"){
+               print("Back..")
             }else{
                 print("Invalid input. Please try again.")
-                print()
             }
         }while userInput.lowercased().trimmingCharacters(in: .whitespaces) != "b"
     }

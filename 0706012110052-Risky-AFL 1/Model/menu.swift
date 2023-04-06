@@ -6,15 +6,13 @@
 //
 
 import Foundation
-class Menu{
-    var id: Int
+class Menu:MenuProtocol{
     var name:String
     var price:Int
     var shopName:String
     
     
-    init(id:Int, name: String, price: Int, shopName: String) {
-         self.id = id
+    init(name: String, price: Int, shopName: String) {
          self.name = name
          self.price = price
          self.shopName = shopName

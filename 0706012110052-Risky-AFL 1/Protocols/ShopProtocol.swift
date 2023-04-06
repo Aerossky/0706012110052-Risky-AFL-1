@@ -11,4 +11,5 @@ protocol ShopProtocol {
     var name: String { get set }
     var menu: [Menu] { get set }
 
+    mutating func addItemShop(item:[Menu])
 }

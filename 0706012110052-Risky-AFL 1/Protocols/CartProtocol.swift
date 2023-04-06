@@ -8,7 +8,6 @@
 import Foundation
 protocol CartProtocol {
     var carts: [Item] { get set }
-
     func getCartList()
     func getCartTotalPrice()->Int
 }

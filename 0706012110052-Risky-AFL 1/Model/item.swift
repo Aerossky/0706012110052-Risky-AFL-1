@@ -8,11 +8,11 @@
 import Foundation
 
 
-class Item: Menu {
+class Item: Menu, ItemProtocol {
     var quantity: Int
     
-    init(id: Int, name: String, price: Int, shopName: String, quantity: Int) {
+    init(name: String, price: Int, shopName: String, quantity: Int) {
         self.quantity = quantity
-        super.init(id: id, name: name, price: price, shopName: shopName)
+        super.init(name: name, price: price, shopName: shopName)
     }
 }

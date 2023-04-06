@@ -6,3 +6,6 @@
 //
 
 import Foundation
+protocol ItemProtocol {
+    var quantity:Int { get set }
+}

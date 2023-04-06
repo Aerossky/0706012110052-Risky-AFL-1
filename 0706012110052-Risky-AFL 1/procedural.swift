@@ -97,7 +97,7 @@
 //        buyScreen(storeSorted: sortedTuku, storeName: "Tuku - Tuku")
 //        case "2" :
 //        buyScreen(storeSorted: sortedGotri, storeName: "Gotri")
-//        case "3" :
+//        case "3" :1
 //        buyScreen(storeSorted: sortedMadam, storeName: "Madam Lie")
 //        case "4" :
 //            buyScreen(storeSorted: sortedKopte, storeName: "Kopte")
@@ -189,7 +189,7 @@
 //    }while userInput.lowercased().trimmingCharacters(in: .whitespaces) != "q"
 //}
 //
-////function untuk menampilkan menu makanan sesuai toko yang dipilih user
+//////function untuk menampilkan menu makanan sesuai toko yang dipilih user
 //func buyScreen(storeSorted: [(String, Int)], storeName: String){
 //    repeat{
 //       //memanggil function getMenu
@@ -214,7 +214,7 @@
 //
 //    }while userInput.lowercased().trimmingCharacters(in: .whitespaces) != "b"
 //}
-//
+
 ////logic function
 ////getMenu: menampilkan semua menu yang ada di sebuah toko sesuai nama toko, (arraymenu, namatoko)
 //func getMenu(name: [(String, Int)], storeName: String){
